@@ -12,24 +12,29 @@
         .header { border-bottom: 2px solid #334155; padding-bottom: 20px; margin-bottom: 30px; }
         .grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px; }
         .card { background: #1e293b; padding: 20px; border-radius: 8px; border: 1px solid #334155; }
-        /* 🐛 BUG VRT: El botón cambió a ROJO */
         .qa-btn-book { background-color: #ef4444; color: white; border: none; padding: 10px 20px; border-radius: 4px; cursor: pointer; font-size: 14px; }
-        /* 🐛 BUG OBSTRUCCIÓN: Overlay que tapa el botón inferior */
         .obstructor-overlay { position: fixed; bottom: 10px; left: 10px; width: 450px; height: 140px; background: #e2e8f0; color: black; padding: 15px; border-radius: 8px; z-index: 9999; }
     </style>
     <script>
         document.addEventListener("DOMContentLoaded", () => {
+            const loginSection = document.getElementById("login-section");
+            const dashboardSection = document.getElementById("dashboard-section");
+            const loginForm = document.getElementById("form-login-prod");
+
             if (document.cookie.includes("qa_session=active_token")) {
-                document.getElementById("login-section").style.display = "none";
-                document.getElementById("dashboard-section").style.display = "block";
+                loginSection.style.display = "none";
+                dashboardSection.style.display = "block";
+            }
+
+            if (loginForm) {
+                loginForm.addEventListener("submit", (event) => {
+                    event.preventDefault();
+                    document.cookie = "qa_session=active_token; path=/";
+                    loginSection.style.display = "none";
+                    dashboardSection.style.display = "block";
+                });
             }
         });
-        function procesarLogin(e) {
-            e.preventDefault();
-            document.cookie = "qa_session=active_token; path=/";
-            document.getElementById("login-section").style.display = "none";
-            document.getElementById("dashboard-section").style.display = "block";
-        }
     </script>
 </head>
 <body>
@@ -41,7 +46,7 @@
     <div id="login-section">
         <div class="login-card">
             <h2>Ingreso Producción</h2>
-            <form onsubmit="procesarLogin(event)">
+            <form id="form-login-prod">
                 <input type="text" name="txtUser" placeholder="Usuario" required>
                 <input type="password" name="txtPassword" placeholder="Contraseña" required>
                 <button type="submit">Ingresar</button>
