@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Portal de Viajes - Panel Staging</title>
+    <meta name="description" content="Sitio de staging para pruebas de QA.">
+    <style>
+        body { background: #0f172a; color: #f8fafc; font-family: Arial, sans-serif; margin: 0; padding: 40px; }
+        .login-card { background: #1e293b; padding: 30px; border-radius: 8px; border: 1px solid #334155; width: 300px; margin: 100px auto; text-align: center; }
+        .login-card input { width: 100%; padding: 10px; margin: 10px 0; border-radius: 4px; border: 1px solid #475569; background: #0f172a; color: white; box-sizing: border-box; }
+        .login-card button { width: 100%; padding: 10px; background: #3b82f6; border: none; color: white; border-radius: 4px; cursor: pointer; font-weight: bold; }
+        .header { border-bottom: 2px solid #334155; padding-bottom: 20px; margin-bottom: 30px; }
+        .grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px; }
+        .card { background: #1e293b; padding: 20px; border-radius: 8px; border: 1px solid #334155; }
+        .qa-btn-book { background-color: #3b82f6; color: white; border: none; padding: 10px 20px; border-radius: 4px; cursor: pointer; font-size: 14px; }
+        .qa-only-staging-banner { background: #eab308; color: #0f172a; padding: 10px; font-weight: bold; text-align: center; border-radius: 4px; margin-bottom: 20px; }
+    </style>
+    <script>
+        // Simulador de sesión SPA
+        document.addEventListener("DOMContentLoaded", () => {
+            if (document.cookie.includes("qa_session=active_token")) {
+                document.getElementById("login-section").style.display = "none";
+                document.getElementById("dashboard-section").style.display = "block";
+            }
+        });
+        function procesarLogin(e) {
+            e.preventDefault();
+            document.cookie = "qa_session=active_token; path=/";
+            document.getElementById("login-section").style.display = "none";
+            document.getElementById("dashboard-section").style.display = "block";
+        }
+    </script>
+</head>
+<body>
+
+    <div id="login-section">
+        <div class="login-card">
+            <h2>Ingreso Staging</h2>
+            <form onsubmit="procesarLogin(e)">
+                <input type="text" name="txtUser" placeholder="Usuario" required>
+                <input type="password" name="txtPassword" placeholder="Contraseña" required>
+                <button type="submit">Ingresar</button>
+            </form>
+        </div>
+    </div>
+
+    <div id="dashboard-section" style="display: none;">
+        <div class="header">
+            <h1 class="qa-main-title" style="font-size: 24px;">Portal de Viajes - Staging</h1>
+        </div>
+        
+        <div class="qa-only-staging-banner">⚠️ ENTORNO DE PRUEBAS ACTIVO</div>
+
+        <div class="grid">
+            <div class="card">
+                <h3 class="qa-card-promo">Vuelo + Hotel a Bariloche</h3>
+                <p>Disfrutá de la nieve y los mejores paisajes del sur chileno y argentino.</p>
+                <input type="text" id="newsletter_sub" placeholder="Tu Email">
+                <button class="qa-btn-book">Reservar Ahora</button>
+            </div>
+            <div class="card">
+                <h3>Publicidad</h3>
+                <ins class="adsbygoogle" style="display:block; width:100%; height:100px; background:#1e293b;"></ins>
+            </div>
+        </div>
+
+        <div style="margin-top: 40px;">
+            <h3>Enlaces</h3>
+            <a href="https://qa.amv.travel/" id="link_home">Ir a la Home Pública</a> | 
+            <img src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=150" id="img_banner">
+        </div>
+    </div>
+
+</body>
+</html>
