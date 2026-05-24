@@ -5,15 +5,24 @@
     <title>Portal de Viajes Oficial</title>
     <meta name="description" content="El portal definitivo de reserva de hoteles y vuelos.">
     <style>
-        body { background: #0f172a; color: #f8fafc; font-family: Arial, sans-serif; margin: 0; padding: 40px; }
-        .login-card { background: #1e293b; padding: 30px; border-radius: 8px; border: 1px solid #334155; width: 300px; margin: 100px auto; text-align: center; }
+        body { background: #0f172a; color: #f8fafc; font-family: Arial, sans-serif; margin: 0; padding: 0; }
+        .login-card { background: #1e293b; padding: 30px; border-radius: 8px; border: 1px solid #334155; width: 300px; margin: 150px auto; text-align: center; }
         .login-card input { width: 100%; padding: 10px; margin: 10px 0; border-radius: 4px; border: 1px solid #475569; background: #0f172a; color: white; box-sizing: border-box; }
         .login-card button { width: 100%; padding: 10px; background: #3b82f6; border: none; color: white; border-radius: 4px; cursor: pointer; font-weight: bold; }
+        
+        .container { padding: 40px; max-width: 1200px; margin: 0 auto; }
         .header { border-bottom: 2px solid #334155; padding-bottom: 20px; margin-bottom: 30px; }
-        .grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px; }
+        .grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px; margin-bottom: 40px; }
         .card { background: #1e293b; padding: 20px; border-radius: 8px; border: 1px solid #334155; }
+        
+        .filler-section { background: #111827; padding: 60px 40px; margin: 40px 0; border-radius: 8px; border: 1px solid #1e293b; }
+        .filler-block { background: #1f2937; padding: 20px; margin: 15px 0; border-radius: 6px; }
+        
+        /* 🐛 BUG VRT: Botón rojo */
         .qa-btn-book { background-color: #ef4444; color: white; border: none; padding: 10px 20px; border-radius: 4px; cursor: pointer; font-size: 14px; }
+        /* 🐛 BUG DE ENLACES: El banner fijo se ubica abajo de todo tapando los links */
         .obstructor-overlay { position: fixed; bottom: 10px; left: 10px; width: 450px; height: 140px; background: #e2e8f0; color: black; padding: 15px; border-radius: 8px; z-index: 9999; }
+        .footer-zone { border-top: 2px solid #334155; padding-top: 40px; margin-top: 60px; padding-bottom: 60px; }
     </style>
     <script>
         document.addEventListener("DOMContentLoaded", () => {
@@ -40,7 +49,7 @@
 <body>
 
     <div class="obstructor-overlay">
-        <strong>Pop-up de Cookies:</strong> Este cartel bloquea los elementos interactivos que queden abajo.
+        <strong>Pop-up de Cookies:</strong> Este cartel bloquea de forma tridimensional los elementos interactivos inferiores.
     </div>
 
     <div id="login-section">
@@ -54,7 +63,7 @@
         </div>
     </div>
 
-    <div id="dashboard-section" style="display: none;">
+    <div id="dashboard-section" style="display: none;" class="container">
         <div class="header">
             <h1 class="qa-main-title" style="font-size: 28px;">Portal de Viajes - Producción</h1>
         </div>
@@ -68,13 +77,36 @@
                 <button class="qa-btn-book">Reservar Ahora</button>
             </div>
             <div class="card">
-                <h3>Publicidad</h3>
+                <h3>Publicidad Superior</h3>
                 <ins class="adsbygoogle" style="display:block; width:100%; height:100px; background:#1e293b;"></ins>
             </div>
         </div>
 
-        <div style="margin-top: 40px;">
-            <h3>Enlaces</h3>
+        <div class="filler-section">
+            <h2>🏨 Catálogo Completo de Hoteles Disponibles</h2>
+            <p>Sección intermedia idéntica para mantener simetría estructural con staging.</p>
+            <div class="filler-block"><h4>Hotel San Carlos (Salta)</h4><p>Desayuno incluido, wifi libre y excursiones asignadas.</p></div>
+            <div class="filler-block"><h4>Resort El Calafate (Santa Cruz)</h4><p>Vista directa al glaciar y spa climatizado de categoría internacional.</p></div>
+            <div class="filler-block"><h4>Posada del Sol (Mendoza)</h4><p>Ubicación céntrica con acceso preferencial a bodegas boutique.</p></div>
+        </div>
+
+        <div class="filler-section">
+            <h2>💬 Preguntas Frecuentes de Pasajeros</h2>
+            <div class="filler-block"><strong>¿Cómo gestiono una cancelación?</strong><p>Podés hacerlo de forma online hasta 48 horas antes del despegue programado.</p></div>
+            <div class="filler-block"><strong>¿Qué documentación necesito para viajar?</strong><p>DNI vigente para vuelos nacionales o Pasaporte actualizado para destinos internacionales.</p></div>
+            <div class="filler-block"><strong>¿Los paquetes incluyen asistencia médica?</strong><p>Sí, todos nuestros vouchers cuentan con cobertura de salud premium pre-activada.</p></div>
+        </div>
+
+        <div class="filler-section">
+            <h2>⭐ Testimonios de Clientes Satisfechos</h2>
+            <p>Más contenido estructural intermedio.</p>
+            <div class="filler-block"><p>"Excelente la atención en el viaje a las Cataratas. Todo coordinado al pie de la letra." - Carlos G.</p></div>
+            <div class="filler-block"><p>"La app nos solucionó los traslados y el hotel en destino de forma impecable." - Marina P.</p></div>
+        </div>
+
+        <div class="footer-zone">
+            <h3>Enlaces Críticos de Auditoría</h3>
+            <p>Esta zona valida que el scroll progresivo llegó exitosamente hasta el fondo del viewport real de Playwright.</p>
             <a href="https://qa.amv.travel/" id="link_home">Ir a la Home Pública</a> | 
             <img src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=150" id="img_banner" alt="Playa paradisíaca">
         </div>
@@ -83,7 +115,7 @@
         <script>
             setTimeout(() => {
                 document.getElementById('layout-shifter').style.height = '150px';
-                document.getElementById('layout-shifter').innerHTML = '<div style="background:#ef4444; padding:20px;">🔥 CLS DETECTADO</div>';
+                document.getElementById('layout-shifter').innerHTML = '<div style="background:#ef4444; padding:20px; border:1px solid #f8fafc;">🔥 CLS DETECTADO EN FONDO DE PÁGINA</div>';
             }, 600);
         </script>
     </div>
