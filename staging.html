@@ -16,19 +16,27 @@
         .qa-only-staging-banner { background: #eab308; color: #0f172a; padding: 10px; font-weight: bold; text-align: center; border-radius: 4px; margin-bottom: 20px; }
     </style>
     <script>
-        // Simulador de sesión SPA
         document.addEventListener("DOMContentLoaded", () => {
+            const loginSection = document.getElementById("login-section");
+            const dashboardSection = document.getElementById("dashboard-section");
+            const loginForm = document.getElementById("form-login-staging");
+
+            // Verificar si ya existe la sesión activa
             if (document.cookie.includes("qa_session=active_token")) {
-                document.getElementById("login-section").style.display = "none";
-                document.getElementById("dashboard-section").style.display = "block";
+                loginSection.style.display = "none";
+                dashboardSection.style.display = "block";
+            }
+
+            // Manejador del submit corregido sin fallas de scope
+            if (loginForm) {
+                loginForm.addEventListener("submit", (event) => {
+                    event.preventDefault(); // Detiene la recarga de GitHub Pages
+                    document.cookie = "qa_session=active_token; path=/";
+                    loginSection.style.display = "none";
+                    dashboardSection.style.display = "block";
+                });
             }
         });
-        function procesarLogin(e) {
-            e.preventDefault();
-            document.cookie = "qa_session=active_token; path=/";
-            document.getElementById("login-section").style.display = "none";
-            document.getElementById("dashboard-section").style.display = "block";
-        }
     </script>
 </head>
 <body>
@@ -36,7 +44,7 @@
     <div id="login-section">
         <div class="login-card">
             <h2>Ingreso Staging</h2>
-            <form onsubmit="procesarLogin(e)">
+            <form id="form-login-staging">
                 <input type="text" name="txtUser" placeholder="Usuario" required>
                 <input type="password" name="txtPassword" placeholder="Contraseña" required>
                 <button type="submit">Ingresar</button>
